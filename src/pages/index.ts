@@ -1,6 +1,6 @@
-import { Page as LoginPage } from "./Login";
-import OrganizationsPage from "./organisation_page";
-import DocumentsPage from "./document_page";
 import DocumentDetailsPage from "./details";
+import { Page as DocumentsPage } from "./documents";
+import { Page as LoginPage } from "./Login";
+import { Page as OrganizationsPage } from "./organizations";
 
-export { LoginPage, OrganizationsPage, DocumentsPage, DocumentDetailsPage };
+export { DocumentDetailsPage, DocumentsPage, LoginPage, OrganizationsPage };

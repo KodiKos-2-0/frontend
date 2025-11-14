@@ -1,13 +1,21 @@
+import {
+  DocumentDetailsPage,
+  DocumentsPage,
+  LoginPage,
+  OrganizationsPage,
+} from "@/pages";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { LoginPage, OrganizationsPage, DocumentsPage, DocumentDetailsPage } from "@/pages";
+import { RootLayout } from "./layouts";
 
 export const AppContent = () => (
   <Router>
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/organizations" element={<OrganizationsPage />} />
-      <Route path="/documents" element={<DocumentsPage />} />
-      <Route path="/details/:id" element={<DocumentDetailsPage />} />
+      <Route element={<RootLayout />}>
+        <Route path="/organizations" element={<OrganizationsPage />} />
+        <Route path="/documents" element={<DocumentsPage />} />
+        <Route path="/details/:id" element={<DocumentDetailsPage />} />
+      </Route>
     </Routes>
   </Router>
 );
