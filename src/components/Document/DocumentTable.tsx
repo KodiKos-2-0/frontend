@@ -11,12 +11,17 @@ export function DocumentTable({ search }: DocumentTableProps) {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(search);
+
   useEffect(() => {
     setIsLoading(true);
     try {
-      api.documents.fetch({ search }).then((data) => setDocuments(data));
+      api.documents
+        .fetch({ search: search.trim().length > 0 ? search : undefined })
+        .then((data) => setDocuments(data));
     } catch (error) {
-      console.error("Failed to fetch organizations:", error);
+      setDocuments([]);
+      console.error("Failed to fetch documents:", error);
     } finally {
       setIsLoading(false);
     }

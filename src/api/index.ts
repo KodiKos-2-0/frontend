@@ -43,10 +43,10 @@ export const api = {
       }
 
       const res = await axiosInstance.get<FetchSearchedDocumentsResponseData>(
-        `/documents/search/`,
+        `/search/`,
         {
           params: {
-            q: config.search,
+            query: config.search,
           },
         }
       );
