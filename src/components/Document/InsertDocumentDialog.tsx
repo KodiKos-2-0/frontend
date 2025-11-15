@@ -74,7 +74,7 @@ export function InsertDocumentDialog() {
         <Plus className="w-4 h-4" />
         <p>Add Document</p>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="bg-white sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Add New Document</DialogTitle>
           <DialogDescription>
@@ -155,8 +155,13 @@ export function InsertDocumentDialog() {
           >
             Cancel
           </Button>
-          <Button type="submit" onClick={handleSubmit} disabled={isPending}>
-            Add Document
+          <Button
+            className="border border-black"
+            type="submit"
+            onClick={handleSubmit}
+            disabled={isPending}
+          >
+            Add
           </Button>
         </div>
       </DialogContent>

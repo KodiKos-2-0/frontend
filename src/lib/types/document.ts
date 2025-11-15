@@ -4,18 +4,26 @@ export type Document = {
   id: number;
   title: string;
   content: string;
+  tags: string[];
   created: string;
   created_date: string;
   modified: string;
   added: string;
+  delete_at: Nullable<string>;
+  archive_serial_number: Nullable<number>;
   original_file_name: string;
-  custom_fields: [
-    {
-      field: number;
-      value: string;
-    }
-  ];
+  archived_file_name: string;
+  owner: number;
+  user_can_change: boolean;
+  is_shared_by_requester: boolean;
+  notes: string[];
+  custom_fields: {
+    field: number;
+    value: string;
+  }[];
+  page_count: number;
   mime_type: string;
+  correspondent: Nullable<number>;
   document_type: Nullable<string>;
   storage_path: Nullable<string>;
 };

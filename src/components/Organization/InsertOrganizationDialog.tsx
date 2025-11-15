@@ -54,15 +54,12 @@ export function InsertOrganizationDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        asChild
-        className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded flex items-center gap-2 text-sm font-medium"
-      >
+      <DialogTrigger className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded flex items-center gap-2 text-sm font-medium">
         <Plus className="w-4 h-4" />
         <Button>Add Organization</Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[520px]">
+      <DialogContent className="sm:max-w-[520px] bg-white">
         <DialogHeader>
           <DialogTitle>New Organization</DialogTitle>
           <DialogDescription>
@@ -81,16 +78,15 @@ export function InsertOrganizationDialog() {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="org-description">Description</Label>
-              <Textarea
-                id="org-description"
-                placeholder="..."
-                value={form.description ?? ""}
-                onChange={(e) => handleChange("description", e.target.value)}
-              />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="org-description">Description</Label>
+            <Textarea
+              className="w-full"
+              id="org-description"
+              placeholder="..."
+              value={form.description ?? ""}
+              onChange={(e) => handleChange("description", e.target.value)}
+            />
           </div>
         </div>
 
@@ -105,7 +101,11 @@ export function InsertOrganizationDialog() {
           >
             Cancel
           </Button>
-          <Button onClick={handleSubmit} disabled={isPending}>
+          <Button
+            className="border border-black"
+            onClick={handleSubmit}
+            disabled={isPending}
+          >
             Create
           </Button>
         </div>
