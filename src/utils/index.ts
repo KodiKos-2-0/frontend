@@ -1,3 +1,4 @@
 import { cn } from "./cn";
+import { buildQueryString } from "./query-string";
 
-export { cn };
+export { buildQueryString, cn };
