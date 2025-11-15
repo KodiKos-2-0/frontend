@@ -3,6 +3,7 @@ import { DocumentSearchbar } from "./DocumentSearchbar";
 import { DocumentTable } from "./DocumentTable";
 import { DocumentTableHeader } from "./DocumentTableHeader";
 import { DocumentTablePagination } from "./DocumentTablePagination";
+import { InsertDocumentDialog } from "./InsertDocumentDialog";
 
 export const Document = {
   Table: {
@@ -13,5 +14,8 @@ export const Document = {
   Query: {
     Filters: DocumentFilters,
     Search: DocumentSearchbar,
+  },
+  Forms: {
+    InsertDialog: InsertDocumentDialog,
   },
 };

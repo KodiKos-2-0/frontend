@@ -13,7 +13,7 @@ export function OrganizationCard(props: OrganizationCardProps) {
 
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
         <Users className="w-4 h-4" />
-        <span>{props.memberCount} Members</span>
+        <span>{props.member_count} Members</span>
       </div>
 
       <div className="flex items-center gap-2">

@@ -1,15 +1,19 @@
 import { Document } from "@/components";
 import { DocumentStatGrid } from "@/components/Document/DocumentStatGrid";
 import { DocumentTablePagination } from "@/components/Document/DocumentTablePagination";
-import { Clock, File, FileText, Grid, Plus } from "lucide-react";
+import { InsertDocumentDialog } from "@/components/Document/InsertDocumentDialog";
+import { useDebounce } from "@uidotdev/usehooks";
+import { Clock, File, FileText, Grid } from "lucide-react";
 import React, { useState } from "react";
-
-const TOTAL_PAGES_COUNT = 10;
 
 export function Page() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState(null);
   const [page, setPage] = useState(1);
+  const [hasNextPage] = useState(false);
+  const [hasPreviousPage] = useState(false);
+
+  const debouncedSearch = useDebounce(search, 400);
 
   const Header = () => (
     <React.Fragment>
@@ -106,24 +110,16 @@ export function Page() {
           filter={filter}
           onFilterChange={(filter) => setFilter(filter)}
         />
-        <button className="flex items-center gap-2 px-4 py-2 bg-blue-400 text-white rounded-lg text-sm hover:bg-blue-500">
-          <Plus className="w-4 h-4" />
-          Create New Document
-        </button>
+        <InsertDocumentDialog />
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200">
         <Document.Table.Header />
-        <Document.Table.Data />
+        <Document.Table.Data search={debouncedSearch} />
         <DocumentTablePagination
           page={page}
-          totalPages={TOTAL_PAGES_COUNT}
-          onNextPage={() =>
-            setPage((prev) =>
-              prev >= TOTAL_PAGES_COUNT ? TOTAL_PAGES_COUNT : prev + 1
-            )
-          }
-          onPrevPage={() => setPage((prev) => (prev <= 0 ? 0 : prev - 1))}
+          onNextPage={() => setPage((prev) => (hasNextPage ? prev + 1 : prev))}
+          onPrevPage={() => setPage((prev) => (hasPreviousPage ? prev - 1 : 0))}
         />
       </div>
     </main>

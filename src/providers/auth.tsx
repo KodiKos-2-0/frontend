@@ -12,10 +12,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   const login = async (username: string, password: string) => {
     setIsAuthencating(true);
-    api
+    api.auth
       .login(username, password)
       .then((data) => localStorage.setItem(LOCAL_STORAGE.api.token, data.token))
-      .then(() => api.fetchUser())
+      .then(() => api.auth.fetch())
       .then((data) => setUser(data))
       .catch((err) => console.log(err))
       .finally(() => setIsAuthencating(false));
@@ -28,8 +28,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   useEffect(() => {
     setIsAuthencating(true);
-    api
-      .fetchUser()
+    api.auth
+      .fetch()
       .then((data) => setUser(data))
       .catch((err) => console.log(err))
       .finally(() => setIsAuthencating(false));

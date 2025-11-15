@@ -1,7 +1,24 @@
+import { api } from "@/api";
 import { Organization } from "@/components";
-import { ORGANIZATIONS } from "@/constants/mock";
+import { InsertOrganizationDialog } from "@/components/Organization/InsertOrganizationDialog";
+import type { Organization as TOrganization } from "@/lib/types";
+import { useEffect, useState } from "react";
 
 export function Page() {
+  const [organizations, setOrganizations] = useState<TOrganization[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    try {
+      api.organizations.fetch().then((data) => setOrganizations(data));
+    } catch (error) {
+      console.error("Failed to fetch organizations:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   return (
     <main className="flex-1 overflow-auto px-8 py-6">
       <div className="mb-6">
@@ -10,15 +27,14 @@ export function Page() {
           Manage your organizational units, members, and access permissions.
           Create new organizations or browse existing ones.
         </p>
-        <button className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded flex items-center gap-2 text-sm font-medium">
-          <span className="text-lg">+</span>
-          Create New Organization
-        </button>
+        <InsertOrganizationDialog />
       </div>
       <div className="grid grid-cols-3 gap-6">
-        {ORGANIZATIONS.map((org) => (
-          <Organization.Card {...org} key={org.id} />
-        ))}
+        {isLoading && <p>Loading organizations...</p>}
+        {!isLoading &&
+          (organizations || []).map((org) => (
+            <Organization.Card {...org} key={org.id} />
+          ))}
       </div>
     </main>
   );

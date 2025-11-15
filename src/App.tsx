@@ -1,5 +1,5 @@
 import {
-  DocumentDetailsPage,
+  DocumentPage,
   DocumentsPage,
   LoginPage,
   OrganizationsPage,
@@ -13,13 +13,13 @@ export const AppContent = () => (
   <Router>
     <Routes>
       <Route element={<PublicRoute />}>
-        <Route path="/" element={<LoginPage />} />
+        <Route index element={<LoginPage />} />
       </Route>
       <Route element={<PrivateRoute />}>
         <Route element={<RootLayout />}>
           <Route path="/organizations" element={<OrganizationsPage />} />
           <Route path="/documents" element={<DocumentsPage />} />
-          <Route path="/details/:id" element={<DocumentDetailsPage />} />
+          <Route path="/details/:id" element={<DocumentPage />} />
         </Route>
       </Route>
     </Routes>
